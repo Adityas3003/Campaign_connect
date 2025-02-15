@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   <!-- favicon -->
+   <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    
+    <title>Campaign connect</title>
+    <style>
+        /* CSS styles */
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header-container {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: white;
+            padding: 10px 0;
+            
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            max-width: 1200px;
+            margin: auto;
+            height: 10px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style: none;
+            padding:0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            padding: 8px 8px;
+            display: block;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            border-radius: 5px; 
+        }
+        nav ul li a:hover {
+            background-color: #fc5711f9; 
+            color: white;
+        }
+        .join {
+            background: teal;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            text-align: center;
+        }
+        .slides {
+            display: none;
+            max-width: 100%;
+            height: auto;
+        }
+        .fade {
+            animation: fadeEffect 3s infinite;
+        }
+        @keyframes fadeEffect {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .feedback {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: blue;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        /*Service section css*/
+        .service {
+           padding: 1rem 0;
+          background: #f8f9fa;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0px auto;
+            
+        }
+        h1 {
+            font-size: 40px;
+            text-align: center;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .marquee{
+            font-size: 20px;
+            font-style: italic;
+        }
+        .grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: nowrap;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            width: 150px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .card a{
+            color: black;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight:bold;
+        }
+        .card p a:hover{
+            color:#fc5711f9;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+        /*Enquiry form css*/
+            
+        .enformcontainer {
+         display: flex;
+         background: white;
+         width: 90%; 
+         max-width: 1300px; 
+         border-radius: 10px;
+         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+         overflow: hidden;
+         align-items: center;
+         margin: 50px auto;
+        }
+
+        .image-section {
+         flex: 1;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         
+        }
+
+        .image-section img {
+         width: 100%;
+         height: auto;
+         object-fit: cover;
+        }
+        
+        .form-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .ensubmit {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .ensubmit:hover {
+            background: #0056b3;
+        }
+        /*about css*/
+        
+        .info-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 50px;
+            flex-wrap: wrap;
+            text-align: center;
+            background-image: url(img/about\ section.png);
+        }
+        
+        .info-box {
+           background: rgba(255, 255, 255, 0.3);
+         backdrop-filter: blur(20px); /* Blurring effect */
+         padding: 30px;
+         text-align: center;
+         width: 400px;
+         min-height: 250px;
+   
+        }
+
+        
+        h2 {
+            margin-bottom: 10px;
+        }
+        
+        p {
+            font-size: 14px;
+            color: #333;
+        }
+
+        /*footer css*/
+       .footer {
+      background: #232a34;
+      padding-bottom: 50px;
+      padding-top: 80px;
+      text-align: center;
+      }
+
+     .footer_menu ul {
+         list-style: none;
+         padding: 0;
+         margin: 0 auto;
+         display: flex;
+         justify-content: center;
+        }
+
+     .footer_menu ul li {
+         display: inline-block;
+         margin: 0 10px;
+        }
+
+      .footer_menu ul li a {
+         color: #fff;
+         text-decoration: none;
+         transition: 0.3s;
+        }
+
+      .footer_menu ul li a:hover {
+         color: #554c86;
+        }
+
+     .footer_profile ul {
+         list-style: none;
+         padding: 0;
+         margin: 20px 0;
+         display: flex;
+         justify-content: center;
+        }
+
+      .footer_profile ul li {
+         display: inline-block;
+         margin: 0 5px;
+        }
+
+      .footer_profile ul li a {
+         background: #554c86;
+         width: 40px;
+         height: 40px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border-radius: 50%;
+         text-decoration: none;
+         transition: 0.3s;
+         color: #fff;
+         font-size: 18px;
+        }
+
+        .footer_profile ul li a:hover {
+          background: #007bff;
+        }
+
+        .footer_copyright {
+          font-size: 12px;
+          font-weight: 600;
+          color: #fff;
+         margin-top: 10px;
+        } 
+        .footer_copyright p{
+            color: white;
+        }
+
+    
+
+        
+        /* smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Section -->
+    <section id="home">
+        <div class="header-container">
+            <header>
+                <div class="logo">Campaign connect<span style="color: #f8a900;">●</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#volunteers">Volunteers</a></li>
+                        <li><a href="#ngos">NGOs</a></li>
+                        <li><a href="#corporates">Corporates</a></li>
+                        <li><a href="#service">Service</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="register.html">Log In</a></li>
+                        <li><a href="#" class="join">Join Us</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        
+        <div class="slideshow-container">
+            <img class="slides fade" src="img/web slide 1.jpg" alt="Slide 1">
+            <img class="slides fade" src="img/web slide 4.jpg" alt="Slide 2">
+            <img class="slides fade" src="img/web slide 5.jpg" alt="Slide 3">
+        </div>
+        
+        <script>
+            let slideIndex = 0;
+            showSlides();
+    
+            function showSlides() {
+                let slides = document.getElementsByClassName("slides");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1; }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 3000);
+            }
+        </script>
+        
+        <button class="feedback" onclick="location.href='feedback.html';">Feedback</button>
+        
+    </section>
+
+    <!-- Service Section -->
+    <section class="service" id="service">
+        <div class="container">
+             <h1>Explore <span class="highlight">Campaign Connect Services</span></h1>
+             <marquee class="marquee" behavior="scroll" direction="left" scrollamount="7">
+                Join us in making a positive impact! Volunteer for community campaigns. 🌍🤝 #TogetherWeCan
+            </marquee>
+            <div class="grid">
+                <div class="card">
+                     <img src="img/service organization.png" alt="Organization">
+                     <p><a href="explore.html">Organization</a></p>
+               </div>
+               <div class="card">
+                   <img src="img/service volunteer.png" alt="Volunteer Coordination">
+                  <p><a href="explore.html">Volunteer</a></p>
+               </div>
+               <div class="card">
+                      <img src="img/service aware.png" alt="Awareness Campaigns">
+                     <p><a href="explore.html">Awareness & Engagement</a></p>
+               </div>
+               <div class="card">
+                     <img src="img/service community.png" alt="Community Support">
+                     <p><a href="explore.html" >Community Support</a></p>
+                 </div>
+                <div class="card">
+                      <img src="img/service management.png" alt="Event Management">
+                     <p><a href="explore.html">Event Management</a></p>
+                </div>
+            </div>
+       </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="info-section" id="about">
+        <div class="info-box">
+            
+            <i class="fa-solid fa-users" style="font-size: 50px;"></i>
+            <h2>About Us</h2>
+            <p>Campaign Connect is a non-profit organisation that seeks to contribute to the developmental sector by facilitating engagement of the volunteering community, building capacity, and creating value-added services for NGOs.</p>
+        </div>
+        <div class="info-box">
+            <i class="fa-solid fa-bullseye" style="font-size: 50px;"></i>
+            <h2>Mission</h2>
+            <p><strong>Cause x Passion x Impact</strong></p>
+            <p>Campaign Connect aims to provide comprehensive resource solutions for the social sector by creating symbiosis amongst NGOs, volunteers, and corporates, adding value and structure to these associations.</p>
+        </div>
+    </section>
+
+    <!-- Enquiry form -->
+    <div class="enformcontainer" id="contact">
+        <div class="image-section">
+            <img src="img/enquiry.png" alt="Enquiry Image">
+        </div>
+        <div class="form-section">
+            <h2>Campaign Connect Enquiry Form</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button class="ensubmit" type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="container">		
+                <div class="row text-center">						
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#service">Service</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>						
+                        <div class="footer_copyright">
+                            <p>&copy; 2025 Campaign Connect. All Rights Reserved.</p>
+                        </div>	
+                        <div class="footer_profile">
+                            <ul>
+                                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                
+                            </ul>
+                        </div>						
+                    </div>						
+                </div>				
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
