@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Campaigns</title>
+    <link rel="stylesheet" href="demo.css">
+    
+</head>
+<body>
+    <header>
+        <div class="logo">Campaign Connect<span style="color: #f8a900;">●</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Volunteers</a></li>
+                <li><a href="#">NGOs</a></li>
+                <li><a href="#">Corporates</a></li>
+                <li><a href="index.html">Service</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="login.html">Log In</a></li>
+                <li><a href="#" class="join">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Explore <span class="highlight">Opportunities</span></h1>
+
+        <div class="admin-panel">
+            <h2>Organizer Panel</h2>
+            <input type="text" id="campaign-title" placeholder="Campaign Title">
+            <input type="text" id="campaign-description" placeholder="Description">
+            <input type="date" id="campaign-date" placeholder="Date">
+            <input type="text" id="campaign-location" placeholder="Location">
+            <input type="time" id="campaign-time" placeholder="Time">
+            <input type="file" id="campaign-image" accept="image/*">
+            <button id="add-campaign-btn">Add Campaign</button>
+        </div>
+
+        <div class="opportunities" id="campaign-list"></div>
+    </div>
+
+    <script src="demo.js"></script>
+</body>
+</html>

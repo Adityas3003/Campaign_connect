@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Campaign</title>
+<!-- favicon -->
+   <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: transparent;
+        color: #333;
+    }
+    .form-container {
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        background: whitesmoke;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .btn {
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+        padding: 12px;
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: 0.3s ease;
+    }
+    .btn:hover {
+        background: linear-gradient(135deg, #0056b3, #003d80);
+    }
+</style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add a New Campaign</h2>
+        <form action="add_campaign.jsp" method="post">
+            <label>Title:</label>
+            <input type="text" name="title" required>
+
+            <label>Description:</label>
+            <textarea name="description" required></textarea>
+
+            <label>Date:</label>
+            <input type="date" name="date" required>
+
+            <label>Location:</label>
+            <input type="text" name="location" required>
+
+            <label>Roles:</label>
+            <textarea name="roles" required></textarea>
+
+            <label>Image URL:</label>
+            <input type="text" name="image_url">
+
+            <button type="submit" class="btn">Add Campaign</button>
+        </form>
+    </div>
+</body>
+</html>

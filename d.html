@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Campaigns</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #2c3e50;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f8a900;
+}
+
+.join {
+    background-color: #f8a900;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Admin Panel */
+.admin-panel {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.admin-panel h2 {
+    text-align: center;
+}
+
+.admin-panel input, .admin-panel button {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.admin-panel button {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+}
+
+.admin-panel button:hover {
+    background-color: #218838;
+}
+
+/* Campaign List */
+.opportunities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.campaign-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: left;
+    position: relative;
+}
+
+.campaign-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.campaign-item h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.campaign-item p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Buttons */
+.edit-btn, .delete-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .admin-panel input, .admin-panel button {
+        width: 100%;
+    }
+
+    .campaign-item {
+        width: 100%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Campaign Connect<span style="color: #f8a900;">●</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Volunteers</a></li>
+                <li><a href="#">NGOs</a></li>
+                <li><a href="#">Corporates</a></li>
+                <li><a href="index.html">Service</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="login.html">Log In</a></li>
+                <li><a href="#" class="join">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Explore <span class="highlight">Opportunities</span></h1>
+
+        <div class="admin-panel">
+            <h2>Organizer Panel</h2>
+            <input type="text" id="campaign-title" placeholder="Campaign Title">
+            <input type="text" id="campaign-description" placeholder="Description">
+            <input type="date" id="campaign-date" placeholder="Date">
+            <input type="text" id="campaign-location" placeholder="Location">
+            <input type="time" id="campaign-time" placeholder="Time">
+            <input type="file" id="campaign-image" accept="image/*">
+            <button id="add-campaign-btn">Add Campaign</button>
+        </div>
+
+        <div class="opportunities" id="campaign-list"></div>
+    </div>
+
+    <script>
+        document.getElementById('add-campaign-btn').addEventListener('click', function() {
+            let title = document.getElementById('campaign-title').value;
+            let description = document.getElementById('campaign-description').value;
+            let date = document.getElementById('campaign-date').value;
+            let location = document.getElementById('campaign-location').value;
+            let time = document.getElementById('campaign-time').value;
+            let imageInput = document.getElementById('campaign-image');
+            let imageFile = imageInput.files[0];
+            
+            if (!title || !description || !date || !location || !time || !imageFile) {
+                alert('Please enter all campaign details, including an image.');
+                return;
+            }
+
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                let campaignList = document.getElementById('campaign-list');
+                let campaignItem = document.createElement('div');
+                campaignItem.classList.add('campaign-item');
+                campaignItem.innerHTML = `
+                    <img src="${event.target.result}" alt="Campaign Image" class="campaign-image">
+                    <h3>${title}</h3>
+                    <p>${description}</p>
+                    <p><strong>Date:</strong> ${date}</p>
+                    <p><strong>Location:</strong> ${location}</p>
+                    <p><strong>Time:</strong> ${time}</p>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                `;
+                campaignList.appendChild(campaignItem);
+
+                document.getElementById('campaign-title').value = '';
+                document.getElementById('campaign-description').value = '';
+                document.getElementById('campaign-date').value = '';
+                document.getElementById('campaign-location').value = '';
+                document.getElementById('campaign-time').value = '';
+                document.getElementById('campaign-image').value = '';
+
+                campaignItem.querySelector('.delete-btn').addEventListener('click', function() {
+                    campaignItem.remove();
+                });
+
+                campaignItem.querySelector('.edit-btn').addEventListener('click', function() {
+                    let newTitle = prompt('Edit Campaign Title:', campaignItem.querySelector('h3').textContent);
+                    let newDescription = prompt('Edit Description:', campaignItem.querySelector('p').textContent);
+                    let newDate = prompt('Edit Date:', campaignItem.querySelectorAll('p')[1].textContent.replace('Date: ', ''));
+                    let newLocation = prompt('Edit Location:', campaignItem.querySelectorAll('p')[2].textContent.replace('Location: ', ''));
+                    let newTime = prompt('Edit Time:', campaignItem.querySelectorAll('p')[3].textContent.replace('Time: ', ''));
+                    
+                    if (newTitle && newDescription && newDate && newLocation && newTime) {
+                        campaignItem.querySelector('h3').textContent = newTitle;
+                        campaignItem.querySelector('p').textContent = newDescription;
+                        campaignItem.querySelectorAll('p')[1].innerHTML = `<strong>Date:</strong> ${newDate}`;
+                        campaignItem.querySelectorAll('p')[2].innerHTML = `<strong>Location:</strong> ${newLocation}`;
+                        campaignItem.querySelectorAll('p')[3].innerHTML = `<strong>Time:</strong> ${newTime}`;
+                    }
+                });
+            };
+            reader.readAsDataURL(imageFile);
+        });
+    </script>
+</body>
+</html>
